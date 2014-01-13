@@ -4,6 +4,37 @@ fedoraproxy
 ### Description
 FedoraProxy: Fedora commons REST API PHP client
 
+The FedoroProxy helps you developing a fedora commons client based on php. It uses the fedora commons REST API. Follwing methods are supported:
+
+API-A Methods:
+
+findObjects
+findNamespaces
+
+API-M Methods
+
+createFoxml
+getNextPid
+getDatastream
+ingest
+purgeObject
+purgeDatastream
+purgeNamespace
+modifyObject
+modifyDatastream
+addDatastream
+
+
+Other methods 
+
+
+uploadNewDatastream: This routine combines the upload operation and the add datastream operation into one single call.
+This routine also sets reasonable defaults for many of the parameters to addDatastream.
+
+
+
+
+
 ### Version
 1.0
 
