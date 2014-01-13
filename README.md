@@ -2,7 +2,7 @@ fedoraproxy
 ===========
 
 ### Description
-FedoraProxy: Fedora commons REST API PHP client. Tested with Fedora commons 3.6.x.
+FedoraProxy: Fedora commons REST API PHP client. Tested with Fedora commons 3.6.x and 3.7.x (see https://wiki.duraspace.org/display/FEDORA/Home).
 
 The FedoroProxy helps you developing a fedora commons client based on php. It uses the fedora commons REST API. It uses curl for the REST communication. Follwing methods are supported:
 
