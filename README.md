@@ -42,9 +42,26 @@ sudo apt-get install php5-curl
 Grab a copy of the code by downloading the zip from this page - or cloning/forking the repo. E.g.:
 
 ```
-cd /opt
+mkdir -p /opt/fedoraProxy
+cd /opt/fedoraProxy
 git clone https://github.com/ubfr-franckborel/fedoraproxy.git
 ```
+
+Make a copy of the original configuration file :
+```
+cd /opt/fedoraProxy/config
+cp main.php.dist main.php
+```
+
+Edit the configuration file
++ logLevel: possible values PEAR_LOG_INFO (Informational), PEAR_LOG_DEBUG (a lot of logging)
++ logPath: where the logging should be logged
++ baseUrl: the address of your fedora commons server
++ login: the login is needed if you like to make write action. Here you set the username of the fedora commons admin.
++ password: the password of the fedora commons admin
++ checkServerCertificate: checks the server certificate. Use this if you are using ssl conection.
++ serverCertificate: path to additional CA certificates used to verify the target certificate.
++ maxResults: maximum of results accepted from the fedora commons server. 
 
 ##### How to use FedoraProxy in your code
 Include FedoraProxy into your PHP code for example like this:
