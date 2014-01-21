@@ -5,10 +5,10 @@
  */
 return array(
         'logLevel' => 'PEAR_LOG_INFO',
-        'logPath' => 'C:/wamp/www/freidokmigration/log/',
-        'baseUrl' => 'http://freidok-test.ub.uni-freiburg.de:8080/fedora',
+        'logPath' => '/var/log',
+        'baseUrl' => 'http://localhost:8080/fedora',
         'login' => 'fedoraAdmin',
-        'password' => 'f3d*r@',
+        'password' => 'secret',
         'checkServerCertificate' => false, // should we check the server certificate
         'serverCertificate' => '', //path to additional CA certificates used to verify the target certificate
         'maxResults' => 259,
