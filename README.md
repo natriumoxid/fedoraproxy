@@ -37,11 +37,13 @@ This routine also sets reasonable defaults for many of the parameters to addData
 Make sure you have php with cURL support. On Ubuntu for example install the php5-curl package with:
 ```
 sudo apt-get install php5-curl
-````
+```
 
 Furthermore you need to install the PEAR package 'log' (you will also need to install PEAR):
-    sudo apt-get install php-pear
-    sudo pear install log
+``` 
+sudo apt-get install php-pear
+sudo pear install log
+```
 
 ##### Install fedoraproxy
 Grab a copy of the code by downloading the zip from this page - or cloning/forking the repo. E.g.:
