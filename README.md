@@ -45,7 +45,7 @@ sudo apt-get install php-pear
 sudo pear install log
 ```
 
-##### Install fedoraproxy
+#### Install fedoraproxy
 Grab a copy of the code by downloading the zip from this page - or cloning/forking the repo. E.g.:
 
 ```
