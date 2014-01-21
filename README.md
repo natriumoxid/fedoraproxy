@@ -46,7 +46,24 @@ cd /opt
 git clone https://github.com/ubfr-franckborel/fedoraproxy.git
 ```
 
-####
+##### How to use FedoraProxy in your code
+Include FedoraProxy into your PHP code for example like this:
+
+```
+include '<FEDORA_HOME>/FedoraProxy.php'
+
+$fedoraProxy = new FedoraProxy;
+
+$pid = "test:1";
+
+// Check if datastream exists
+if($fedoraProxy->exists($pid){
+  // do something
+}
+
+// purge object
+$fedoraProxy->purgeObject($pid);
+```
 
 ### Version
 1.0
