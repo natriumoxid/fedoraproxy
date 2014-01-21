@@ -54,6 +54,7 @@ cd /opt/fedoraProxy
 git clone https://github.com/ubfr-franckborel/fedoraproxy.git
 ```
 
+#### Conigure FedoraProxy
 Make a copy of the original configuration file :
 ```
 cd /opt/fedoraProxy/config
@@ -70,7 +71,7 @@ Edit the configuration file
 + serverCertificate: path to additional CA certificates used to verify the target certificate.
 + maxResults: maximum of results accepted from the fedora commons server. 
 
-##### How to use FedoraProxy in your code
+#### Use FedoraProxy in your code
 Include FedoraProxy into your PHP code for example like this:
 
 ```
