@@ -75,7 +75,7 @@ Edit the configuration file
 Include FedoraProxy into your PHP code for example like this:
 
 ```
-include '<FEDORA_HOME>/FedoraProxy.php'
+include '<FEDORA_PROXY_HOME>/FedoraProxy.php'
 
 $fedoraProxy = new FedoraProxy;
 
