@@ -96,8 +96,8 @@ $fedoraProxy->purgeObject($pid);
 13.01.2014
 
 ### Authors
-Franck Borel <franck.borel@ub.uni-freiburg.de>
-Martin Helfer <martin.helfer@ub.uni-freiburg.de>
++ Franck Borel <franck.borel@ub.uni-freiburg.de>
++ Martin Helfer <martin.helfer@ub.uni-freiburg.de>
 
 Based on the api of the software moodle-qti-cp-fedora written for the
 University of Geneva by Laurent Opprecht (<laurent.opprecht@unige.ch>, <laurent@opprecht.info>)
