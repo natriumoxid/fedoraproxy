@@ -1,4 +1,4 @@
-fedoraproxy
+FedoraProxy
 ===========
 
 ### Description
@@ -15,7 +15,7 @@ The FedoroProxy helps you developing a fedora commons client based on php. It us
 
 - createFoxml
 - getNextPid
--getDatastream
+- getDatastream
 - ingest
 - purgeObject
 - purgeDatastream
@@ -31,11 +31,22 @@ The FedoroProxy helps you developing a fedora commons client based on php. It us
 This routine also sets reasonable defaults for many of the parameters to addDatastream.
 
 
-### Installation
+### Getting started
 
+#### Pre-installation
+Make sure you have php with cURL support. On Ubuntu for example install the php5-curl package with:
+```
+sudo apt-get install php5-curl
+````
+##### Install fedoraproxy
+Grab a copy of the code by downloading the zip from this page - or cloning/forking the repo. E.g.:
 
-### Example 
+```
+cd /opt
+git clone https://github.com/ubfr-franckborel/fedoraproxy.git
+```
 
+####
 
 ### Version
 1.0
