@@ -58,8 +58,7 @@ abstract class RestProxyBaseAbstract
         }
     }
 
-    public function execute($verb, $parameters = array(), $httpMethod = 'get',
-        $dataToSend = null, $mimeType = '')
+    public function execute($verb, $parameters = array(), $httpMethod = 'get', $dataToSend = null, $mimeType = '')
     {
         try {
             $this->_logger->log('---------', PEAR_LOG_DEBUG);
@@ -84,8 +83,7 @@ abstract class RestProxyBaseAbstract
 
             $url = "$base/{$verb}{$args}";
 
-            $result = $this->getRestXmlResponse($url, $httpMethod, $dataToSend,
-                $mimeType);
+            $result = $this->getRestXmlResponse($url, $httpMethod, $dataToSend, $mimeType);
             return $result;
         } catch (Exception $exception) {
             throw $exception;
@@ -96,8 +94,7 @@ abstract class RestProxyBaseAbstract
     {
         try {
             $this->_logger->log('---------', PEAR_LOG_DEBUG);
-            $this->_logger->log('RestProxyBaseAbstract::executePost',
-                PEAR_LOG_DEBUG);
+            $this->_logger->log('RestProxyBaseAbstract::executePost', PEAR_LOG_DEBUG);
             $base = $this->_config->baseUrl;
             $base = rtrim($base, '/');
             $url = "$base/{$verb}";
@@ -118,13 +115,11 @@ abstract class RestProxyBaseAbstract
      * @return String current time
      * @throws Exception 
      */
-    public function executeRaw($verb, $httpMethod, array $parameters = array(),
-        $dataToSend = null, $mimeType = '')
+    public function executeRaw($verb, $httpMethod, array $parameters = array(), $dataToSend = null, $mimeType = '')
     {
         try {
             $this->_logger->log('---------', PEAR_LOG_DEBUG);
-            $this->_logger->log("RestProxyBaseAbstract::executeRaw",
-                PEAR_LOG_DEBUG);
+            $this->_logger->log("RestProxyBaseAbstract::executeRaw", PEAR_LOG_DEBUG);
             $this->_logger->log("verb: {$verb}", PEAR_LOG_DEBUG);
             $this->_logger->log("httpMethod: {$httpMethod}", PEAR_LOG_DEBUG);
             $this->_logger->log("mimeType: {$mimeType}", PEAR_LOG_DEBUG);
@@ -137,15 +132,13 @@ abstract class RestProxyBaseAbstract
                     $value = $value ? 'true' : 'false';
                 }
                 $args[] = $key . '=' . urlencode($value);
-                $this->_logger->log("parameter [key:value]: {$key}:{$value}",
-                    PEAR_LOG_DEBUG);
+                $this->_logger->log("parameter [key:value]: {$key}:{$value}", PEAR_LOG_DEBUG);
             }
             $args = implode('&', $args);
             $args = $args ? '?' . $args : '';
             $url = "$base/$verb{$args}";
             $this->_logger->log("url {$url}", PEAR_LOG_DEBUG);
-            return $this->getRestResponse($url, $httpMethod, $dataToSend,
-                    $mimeType);
+            return $this->getRestResponse($url, $httpMethod, $dataToSend, $mimeType);
         } catch (Exception $exception) {
             throw $exception;
         }
@@ -155,8 +148,7 @@ abstract class RestProxyBaseAbstract
     {
         try {
             $this->_logger->log('---------', PEAR_LOG_DEBUG);
-            $this->_logger->log("RestProxyBaseAbstract::executePostRaw",
-                PEAR_LOG_DEBUG);
+            $this->_logger->log("RestProxyBaseAbstract::executePostRaw", PEAR_LOG_DEBUG);
             $this->_logger->log("verb: {$verb}", PEAR_LOG_DEBUG);
 
             $base = $this->_config->baseUrl;
@@ -178,17 +170,14 @@ abstract class RestProxyBaseAbstract
      * @param $contentMimetype The mimetype of the content to send with the REST request
      * @return DOMDocument or null if the response is not well formed XML
      */
-    protected function getRestXmlResponse($url, $httpMethod, $dataToSend = null,
-        $contentMimetype = null)
+    protected function getRestXmlResponse($url, $httpMethod, $dataToSend = null, $contentMimetype = null)
     {
         $this->_logger->log('---------', PEAR_LOG_DEBUG);
-        $this->_logger->log("RestProxyBaseAbstract::getRestXmlResponse",
-            PEAR_LOG_DEBUG);
+        $this->_logger->log("RestProxyBaseAbstract::getRestXmlResponse", PEAR_LOG_DEBUG);
         $this->_logger->log("url: {$url}", PEAR_LOG_DEBUG);
         $this->_logger->log("httpMethod: {$httpMethod}", PEAR_LOG_DEBUG);
         $this->_logger->log("dataToSend: {$dataToSend}", PEAR_LOG_DEBUG);
-        $this->_logger->log("contentMimeType: {$contentMimetype}",
-            PEAR_LOG_DEBUG);
+        $this->_logger->log("contentMimeType: {$contentMimetype}", PEAR_LOG_DEBUG);
 
         $client = $this->getRestClient();
         $client->setUrl($url);
@@ -206,8 +195,7 @@ abstract class RestProxyBaseAbstract
         $result = $client->sendCurlRequest();
         $responseContent = $result->getResponseContent();
 
-        $this->_logger->log("responseContent: {$responseContent}",
-            PEAR_LOG_DEBUG);
+        $this->_logger->log("responseContent: {$responseContent}", PEAR_LOG_DEBUG);
         if (!$result->hasError() && stripos($responseContent, 'Exception') === false) {
             $this->_logger->log("result is ok...", PEAR_LOG_DEBUG);
             $document = new DOMDocument();
@@ -222,9 +210,9 @@ abstract class RestProxyBaseAbstract
                 throw new Exception(htmlentities($result->getResponseError()));
             } else {
                 throw new Exception(
-                    'REST response:URL : ' . $result->getRequestUrl() .
-                    'POST data : ' . $result->getRequestSentData() .
-                    'Response :' . $responseContent
+                'REST response:URL : ' . $result->getRequestUrl() .
+                'POST data : ' . $result->getRequestSentData() .
+                'Response :' . $responseContent
                 );
             }
         }
@@ -233,8 +221,7 @@ abstract class RestProxyBaseAbstract
     protected function getPostXmlResponse($url, $post)
     {
         $this->_logger->log('---------', PEAR_LOG_DEBUG);
-        $this->_logger->log("RestProxyBaseAbstract::getPostXmlResponse",
-            PEAR_LOG_DEBUG);
+        $this->_logger->log("RestProxyBaseAbstract::getPostXmlResponse", PEAR_LOG_DEBUG);
         $this->_logger->log("url: {$url}", PEAR_LOG_DEBUG);
         $this->_logger->log("post: {$post}", PEAR_LOG_DEBUG);
 
@@ -260,9 +247,9 @@ abstract class RestProxyBaseAbstract
                 throw new Exception(htmlentities($result->getResponseError()));
             } else {
                 throw new Exception(
-                    'REST response: URL:' . $result->getRequestUrl() .
-                    'POST data: ' . htmlentities($result->getRequestSentData()) .
-                    'Response: ' . $responseContent
+                'REST response: URL:' . $result->getRequestUrl() .
+                'POST data: ' . htmlentities($result->getRequestSentData()) .
+                'Response: ' . $responseContent
                 );
             }
         }
@@ -278,16 +265,13 @@ abstract class RestProxyBaseAbstract
      * REST request
      * @return mixed
      */
-    protected function getRestResponse($url, $httpMethod, $dataToSend = null,
-        $contentMimetype = null)
+    protected function getRestResponse($url, $httpMethod, $dataToSend = null, $contentMimetype = null)
     {
         $this->_logger->log('---------', PEAR_LOG_DEBUG);
-        $this->_logger->log("RestProxyBaseAbstract::getRestResponse",
-            PEAR_LOG_DEBUG);
+        $this->_logger->log("RestProxyBaseAbstract::getRestResponse", PEAR_LOG_DEBUG);
         $this->_logger->log("url: {$url}", PEAR_LOG_DEBUG);
         $this->_logger->log("httpMethod: {$httpMethod}", PEAR_LOG_DEBUG);
-        $this->_logger->log("contentMimetype: {$contentMimetype}",
-            PEAR_LOG_DEBUG);
+        $this->_logger->log("contentMimetype: {$contentMimetype}", PEAR_LOG_DEBUG);
 
         $client = $this->getRestClient();
         $client->setUrl($url);
@@ -312,9 +296,9 @@ abstract class RestProxyBaseAbstract
                 throw new Exception($result->getResponseError());
             } else {
                 throw new Exception(
-                    'REST response:' . $result->getRequestUrl() .
-                    ', POST data: ' . htmlentities($result->getRequestSentData()) .
-                    ', Response: ' . $responseContent
+                'REST response:' . $result->getRequestUrl() .
+                ', POST data: ' . htmlentities($result->getRequestSentData()) .
+                ', Response: ' . $responseContent
                 );
             }
         }
@@ -323,8 +307,7 @@ abstract class RestProxyBaseAbstract
     protected function getPostResponse($url, $post)
     {
         $this->_logger->log('---------', PEAR_LOG_DEBUG);
-        $this->_logger->log("RestProxyBaseAbstract::getPostResponse",
-            PEAR_LOG_DEBUG);
+        $this->_logger->log("RestProxyBaseAbstract::getPostResponse", PEAR_LOG_DEBUG);
         $this->_logger->log("url: {$url}", PEAR_LOG_DEBUG);
         $this->_logger->log("post: {$post}", PEAR_LOG_DEBUG);
 
@@ -345,9 +328,9 @@ abstract class RestProxyBaseAbstract
                 throw new Exception($result->getResponseError());
             } else {
                 throw new Exception(
-                    'REST response: URL : ' . $result->getRequestUrl() .
-                    'POST data:' . $result->getRequestSentData() .
-                    'Response:' . $responseContent
+                'REST response: URL : ' . $result->getRequestUrl() .
+                'POST data:' . $result->getRequestSentData() .
+                'Response:' . $responseContent
                 );
             }
         }
@@ -386,9 +369,24 @@ abstract class RestProxyBaseAbstract
             throw new InvalidArgumentException('file does not exists!');
         }
         $client = $this->getRestClient();
-        $postData = array("file" => "@" . $file);
+
+
+        $postData = array("file" => $this->getCurlValue($file));
 
         return $client->uploadFile($postData);
+    }
+
+    public function getCurlValue($file)
+    {
+        // PHP 5.5 introduced a CurlFile object that deprecates the old @filename syntax
+        // See: https://wiki.php.net/rfc/curl-file-upload
+        if (function_exists('curl_file_create')) {
+            return curl_file_create($file);
+        } else {
+            // Use the old style if using an older version of PHP
+            $value = "@" . $file;
+            return $value;
+        }
     }
 
     /**

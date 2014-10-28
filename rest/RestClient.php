@@ -115,9 +115,7 @@ class RestClient
     public function setHttpMethod($httpMethod)
     {
         $httpMethod = strtoupper($httpMethod);
-        if ($httpMethod == 'GET' || $httpMethod == 'POST'
-            || $httpMethod == 'PUT' || $httpMethod == 'DELETE'
-            || $httpMethod == 'HEAD' || $httpMethod == 'TRACE') {
+        if ($httpMethod == 'GET' || $httpMethod == 'POST' || $httpMethod == 'PUT' || $httpMethod == 'DELETE' || $httpMethod == 'HEAD' || $httpMethod == 'TRACE') {
             $this->_httpMethod = strtoupper($httpMethod);
         }
     }
@@ -197,12 +195,10 @@ class RestClient
             $this->setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
             $this->setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
             $this->setopt(
-                $curl, CURLOPT_CAINFO,
-                dirname(__DIR__) . '/ssl/' . $this->_config->serverCertificate
+                    $curl, CURLOPT_CAINFO, dirname(__DIR__) . '/ssl/' . $this->_config->serverCertificate
             );
         } else {
-            $this->_logger->log('Do not check server certificate.. ',
-                PEAR_LOG_DEBUG);
+            $this->_logger->log('Do not check server certificate.. ', PEAR_LOG_DEBUG);
             curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         }
@@ -227,8 +223,7 @@ class RestClient
             curl_setopt($curl, CURLOPT_POST, true);
 
             if (is_string($this->_dataToSend)) {
-                $this->_logger->log("dataToSend: {$this->_dataToSend}",
-                    PEAR_LOG_DEBUG);
+                $this->_logger->log("dataToSend: {$this->_dataToSend}", PEAR_LOG_DEBUG);
                 curl_setopt($curl, CURLOPT_POSTFIELDS, $this->_dataToSend);
             } elseif (is_array($this->_dataToSend)) {
                 if (isset($this->_dataToSend['content'])) {
@@ -237,8 +232,7 @@ class RestClient
                      * If $this->dataToSend is an array and the content to send
                      * is in $this->dataToSend['content'], we use it
                      */
-                    curl_setopt($curl, CURLOPT_POSTFIELDS,
-                        $this->_dataToSend['content']);
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, $this->_dataToSend['content']);
                 } elseif (isset($this->_dataToSend['file'])) {
                     /*
                      * In case of a file to send, the upload works with an array.
@@ -247,8 +241,7 @@ class RestClient
                      * array('myDocument.pdf' => '@/path/to/file')
                      */
                     $this->_logger->log("dataToSend: file", PEAR_LOG_DEBUG);
-                    curl_setopt($curl, CURLOPT_POSTFIELDS,
-                        $this->_dataToSend['file']);
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, $this->_dataToSend['file']);
                 }
 
                 /*
@@ -256,8 +249,7 @@ class RestClient
                  * the content-type request
                  */
                 if (isset($this->_dataToSend['mimeType'])) {
-                    $this->_logger->log("mimeType: {$this->_dataToSend['mimeType']}",
-                        PEAR_LOG_DEBUG);
+                    $this->_logger->log("mimeType: {$this->_dataToSend['mimeType']}", PEAR_LOG_DEBUG);
                     $this->_dataToSendMimetype = $this->_dataToSend['mimeType'];
                 }
             }
@@ -286,11 +278,7 @@ class RestClient
         $result = new RestResult();
 
         if (empty($postData)) {
-            throw new InvalidArgumentException("postData must be set!");
-        }
-
-        if (!preg_match("/^@.*$/", $postData['file'])) {
-            throw new InvalidArgumentException("File paht must start with @!");
+            throw new InvalidArgumentException("postData is empty!");
         }
 
         $username = $this->_config->login;
@@ -305,6 +293,7 @@ class RestClient
         curl_setopt($curl, CURLOPT_USERPWD, "$username:$password");
         // Data+Files to be posted
         curl_setopt($curl, CURLOPT_POSTFIELDS, $postData);
+
         // Pass TRUE or 1 if you want to wait for and catch the response against 
         // the request made
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -333,14 +322,12 @@ class RestClient
         curl_close($curl);
 
         if (isset($responseError) && strlen($responseError) > 0) {
-            $this->_logger->log('Resonse Error:  ' . $responseError,
-                PEAR_LOG_ERR);
+            $this->_logger->log('Resonse Error:  ' . $responseError, PEAR_LOG_ERR);
             $result->setResponseError($responseError);
         } elseif ($responseHttpCode < 200 || $responseHttpCode >= 300) {
-            $this->_logger->log('Response:  ' . $responseHttpCode,
-                PEAR_LOG_DEBUG);
+            $this->_logger->log('Response:  ' . $responseHttpCode, PEAR_LOG_DEBUG);
             $result->setResponseError('The REST request returned an HTTP error code of '
-                . $responseHttpCode . ' (' . $this->getHttpCodeTranslation($responseHttpCode) . ')');
+                    . $responseHttpCode . ' (' . $this->getHttpCodeTranslation($responseHttpCode) . ')');
         }
 
         return $result;
