@@ -2,7 +2,7 @@ FedoraProxy
 ===========
 
 ### Description
-FedoraProxy: Fedora commons REST API PHP client. Tested with Fedora commons 3.6.x and 3.7.x (see https://wiki.duraspace.org/display/FEDORA/Home).
+FedoraProxy: Fedora commons REST API PHP client. Tested with Fedora commons 3.6.x, 3.7.x and 3.8 (see https://wiki.duraspace.org/display/FEDORA/Home).
 
 The FedoroProxy helps you developing a fedora commons client based on php. It uses the fedora commons REST API. It uses curl for the REST communication. Follwing methods are supported:
 
@@ -45,7 +45,7 @@ sudo apt-get install php-pear
 sudo pear install log
 ```
 
-#### Install fedoraproxy
+#### Install FedoraProxy
 Grab a copy of the code by downloading the zip from this page - or cloning/forking the repo. E.g.:
 
 ```
@@ -94,7 +94,7 @@ $fedoraProxy->purgeObject($pid);
 1.0
 
 ### Last Change 
-13.01.2014
+23.03.2015
 
 ### Authors
 + Franck Borel <franck.borel@ub.uni-freiburg.de>
